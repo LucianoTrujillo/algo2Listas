@@ -24,8 +24,6 @@ Este concepto es utilizado todo el tiempo en nuestra vida contidiana, por ejempl
    - Cuando queremos organizarnos para hacer ciertas tareas en un día.
    - Este elemento actual es parte de una lista.
 
-Los elementos de una lista varían dependiendo de lo que se lista, valga la redundancia. Por ejemplo: Información, objetos, colores, pensamientos, etc.
-
 ### Informática
 En la informática hay ciertas operaciones que se pueden realizar sobre una lista, aunque dependiendo del problema a ser resuelto, puede sufrir variaciones.
 
@@ -38,14 +36,20 @@ Las **operaciones** mas comunes que se hacen sobre una lista son:
    - ¿Esta vacía?.
    - Ver elemento en posición *n*.
 
-Una lista puede tener diferentes implementaciones ya sea estática, dinámica, usando nodos, etc. Nos interesa en particular la lista dinámicamente usada con **nodos**.
+Una lista puede tener diferentes implementaciones ya sea estática, dinámica, usando nodos, etc. Cada una ofrece diferentes pros y cons, pero ahora nos interesa en particular la lista dinámicamente usada con **nodos**.
 
-Un **nodo** es tipo de dato que dependiendo del tipo de lista varía, pero contiene un dato y referencias a almenos un nodo que no sea el mismo.
+Un **nodo** es tipo de dato que dependiendo del tipo de lista varía, pero contiene un dato y referencias a almenos un nodo que no sea el mismo. 
 
 ### Simplemente Enlazada
 En el caso de las listas simplemente enlazadas, se consta de nodos conformados por:
    - un dato.
    - una *referencia* al siguiente elemento en la lista.
+
+La estructura de una lista con nodos enlazados permite la gran **ventaja** de que la memoria no debe ser contigua, es decir no se necesita reservar un bloque de memoria que guarde toda la lista, si no que se va reservando de a "pedazitos" (bloque que ocupa un nodo, muy poco comparado con la lista entera). Además, las operaciones como agregar y eliminación solo requieren unos pocos pasos, para cambiar las referencias de los nodos. No se necesita mover los otros nodos de lugar.
+
+La lista de nodos enlazados maneja de manera muy **eficiente** la memoria ocupada, ya que se va agrandando y reduciendo para ocupar solo lo que necesita. A diferencia del vector dinámico, la lista no tiene que preocuparse por no encontrar un bloque de memoria nuevo donde guardar la lista en caso de fallo (lo cual genera un *O(n)* para la insersión o remoción en el peor caso del vector dinámico, pues tiene que copiar todos los elementos al nuevo vector).
+
+Sin embargo, la lista de nodos enlazados tiene sus *desventajas*. Al no tener la memoria contigua fisicamente, para acceder/agregar/modificar un elemento en la posición *n*, se debe **recorrer** la lista hasta llegar a ese elemento, dado que no se puede calcular la posición de memoria de antemano. Esto trae una deficiencia a nivel complejidad en estas operaciones básicas sobre una lista.
 
 ### Doblemente Enlazada
 En el caso de las listas doblemente enlazadas, se consta de nodos conformados por:
@@ -53,20 +57,24 @@ En el caso de las listas doblemente enlazadas, se consta de nodos conformados po
    - una *referencia* al siguiente elemento en la lista (si es que existe). 
    - una *referencia* al anterior elemento en la lista (si es que existe).
 
+Esta implementación de lista permite una manipulación mas fácil para ciertas operaciones particulares como invertir una lista y es muy útil para cuando se requiere recorrer de manera bidireccional la lista.
 
-A continuación algunos datos para dimensionar la complejidad (del peor caso) de las operaciones más comunes entre las diferentes implementaciones de una lista: 
+### Comparando implementaciones
+A continuación algunos datos para dimensionar la complejidad (del **peor** caso) de las operaciones más comunes entre las diferentes implementaciones de una lista: 
 
-| Operación | Vector Estático | Vector Dinámico | Nodos Enlazados |
+| Operación | Vector Estático | Vector Dinámico | Nodos Simplemente Enlazados |
 | ------ | ------ | ------ | ------ |
 | Crear | *O(1)* | *O(1)* | *O(1)*
 | Destriur | *O(n)* | *O(n)* | *O(n)* |
-| Insertar | *O(1)* | *O(n)* | *O(1)* |
-| Eliminar | *O(1)* | *O(n)* | *O(1)* |
+| Insertar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
+| Eliminar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
 | Está vacía | *O(1)* | *O(1)* |*O(1)* |
-| Ver Elemento | *O(1)* | *O(1)* | *O(n)* |
+| Ver Elemento en lugar *n* | *O(1)* | *O(1)* | *O(n)* |
 
-*Nota 1: Se asume que en todos lo casos se usan en conjunto con una variable de cantidad actual.*
-*Nota 2: La complejdiad no es el único factor que determina cual de los tres usar. El vector estático no tiene la posibilidad de agrandarse y se debe reservar de antemano todo el tamaño posible que pueda llegar a ocupar la lista.* 
+*Nota 1: Se asume que en todos lo casos se usan en conjunto con una variable de cantidad actual.* <br />
+*Nota 2: Se asume que insertar y destruir quieren mantener el bloque contiguo, es decir en el caso de los vectores se quiere una eliminación física, teniendo que mover a todos los elementos de lugar en el peor caso.*  <br />
+*Nota 3: Se asume que las listas empiezan con 0 elementos.*  <br />
+*Nota 4: La complejdiad no es el único factor que determina cual de los tres usar. El vector estático no tiene la posibilidad de agrandarse y se debe reservar de antemano todo el tamaño posible que pueda llegar a ocupar la lista.* 
 
 ## Pilas
 
