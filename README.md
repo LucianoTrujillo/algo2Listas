@@ -6,11 +6,42 @@
 
 ### ¿Qúe es?
 
+Es una implementación del tipo de dato abstracto "Lista simplemente enlazada", que además contiene diferentes primitivas de TDAs como pila y cola, junto con un iterador interno y externo. La lista está implementada con nodos en memoria dinámica y almacena cualquier tipo de dato.
+
 ### Compilación
+
+Para compilarlo se puede hacer uso del siguiente comando dentro de la carpeta del proyecto.
+```
+$ make all
+```
 
 ### Ejecución
 
+La ejecución es muy sencilla, solo basta con el siguiente comando para correr todas las pruebas unitarias del TDA.
+```
+$ ./lista_se
+```
+
 ### Funcionamiento general de la implementación
+
+El TDA viene con las operaciones básicos que se esperan de una lista, las cuales se mencionan más abajo. Al utiliza nodos enlazados, maneja de manera eficiente la canidad de memoria que ocupa en el Heap, ya que solo usa lo justo y necesario. Para hacer uso de la lista, basta con crearla, utilizarla y destruirla.
+
+A continuacion se presenta un caso de uso para ilustrar las operaciones de la lista:
+```
+
+int numerito = 5;
+int otro_numerito = 12342;
+
+lista_t* lista = lista_crear();
+lista_insertar(lista, &numerito);
+lista_insertar(lista, &otro_numerito);
+
+lista_borrar_en_posicion(lista, 0);
+int* elemento = lista_elemento_en_posicion(lista, 0);
+printf("%i", *elemento);
+```
+
+El resultado de este conjunto de operaciones sería "12342", dado se insertan dos elementos pero se borra el primero de ellos, y el segundo pasa a quedar en la primer posicion.
 
 # Conceptos teóricos
 
