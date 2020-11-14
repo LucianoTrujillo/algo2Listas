@@ -12,7 +12,7 @@ Es una implementación del tipo de dato abstracto "Lista simplemente enlazada", 
 
 Para compilarlo se puede hacer uso del siguiente comando dentro de la carpeta del proyecto.
 ```
-$ make all
+$ make lista_se
 ```
 
 ### Ejecución
@@ -22,9 +22,20 @@ La ejecución es muy sencilla, solo basta con el siguiente comando para correr t
 $ ./lista_se
 ```
 
+### Tests de memoria
+
+La ejecución es muy sencilla, solo basta con el siguiente comando para correr todas las pruebas unitarias del TDA.
+```
+$ make mem_test
+```
+
+Para mas comandos visitar el Makefile.
+
 ### Funcionamiento general de la implementación
 
-El TDA viene con las operaciones básicos que se esperan de una lista, las cuales se mencionan más abajo. Al utiliza nodos enlazados, maneja de manera eficiente la canidad de memoria que ocupa en el Heap, ya que solo usa lo justo y necesario. Para hacer uso de la lista, basta con crearla, utilizarla y destruirla.
+El TDA viene con las operaciones básicos que se esperan de una lista, las cuales se mencionan más abajo. Al utiliza nodos enlazados, maneja de manera eficiente la cantidad de memoria que ocupa en el Heap, ya que solo usa lo justo y necesario. Para hacer uso de la lista, basta con crearla, utilizarla y destruirla.
+
+Cada operación del TDA se encuentra testeada con pruebas unitarias exhaustivas que se realizan al ejecutar el programa.
 
 A continuacion se presenta un caso de uso para ilustrar las operaciones de la lista:
 ```
@@ -53,7 +64,7 @@ Este concepto es utilizado todo el tiempo en nuestra vida contidiana, por ejempl
    - Cuando queremos comprar ciertos alimentos en el supermercado.
    - Cuando queremos tener la información de todos los invitados a un cumpleaños.
    - Cuando queremos organizarnos para hacer ciertas tareas en un día.
-   - Este elemento actual es parte de una lista.
+   - Coincidentemente, esto es una lista.
 
 ### Informática
 En la informática hay ciertas operaciones que se pueden realizar sobre una lista, aunque dependiendo del problema a ser resuelto, puede sufrir variaciones.
@@ -96,21 +107,21 @@ A continuación algunos datos para dimensionar la complejidad (del **peor** caso
 | Operación | Vector Estático | Vector Dinámico | Nodos Simplemente Enlazados |
 | ------ | ------ | ------ | ------ |
 | Crear | *O(1)* | *O(1)* | *O(1)*
-| Destriur | *O(n)* | *O(n)* | *O(n)* |
+| Destruir | *O(n)* | *O(n)* | *O(n)* |
 | Insertar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
 | Eliminar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
 | Está vacía | *O(1)* | *O(1)* |*O(1)* |
 | Ver Elemento en lugar *n* | *O(1)* | *O(1)* | *O(n)* |
 
 *Nota 1: Se asume que en todos lo casos se usan en conjunto con una variable de cantidad actual.* <br />
-*Nota 2: Se asume que insertar y destruir quieren mantener el bloque contiguo, es decir en el caso de los vectores se quiere una eliminación física, teniendo que mover a todos los elementos de lugar en el peor caso.*  <br />
+*Nota 2: Se asume que insertar y destruir quieren mantener la continuidad de los elementos, es decir en el caso de los vectores se quiere una eliminación física, teniendo que mover a todos los elementos de lugar en el peor caso.*  <br />
 *Nota 3: Se asume que las listas empiezan con 0 elementos.*  <br />
 *Nota 4: La complejdiad no es el único factor que determina cual de los tres usar. El vector estático no tiene la posibilidad de agrandarse y se debe reservar de antemano todo el tamaño posible que pueda llegar a ocupar la lista.* 
 
 ## Pilas
 
 ### Concepto
-Al igual que la lista, la pila es un conjunto de elementos ordenados. Sin embargo, lo que las diferencia son las **operaciones** que se pueden realizar sobre cada una. Su estructura es conocida como **LIFO** (Last in, first out), en el cual como explica el nombre, el útlimo en entrar es el primero en salir. Esto restringe las operaciones que nos permiten las listas, pero permiten modelar mde una manera mas adecuada ciertas estructuras y comportamientos:
+Al igual que la lista, la pila es un conjunto de elementos ordenados. Sin embargo, lo que las diferencia son las **operaciones** que se pueden realizar sobre cada una. Su estructura es conocida como **LIFO** (Last in, first out), en el cual como explica el nombre, el útlimo en entrar es el primero en salir. Esto restringe las operaciones que nos permiten las listas, pero modelan de una manera mas adecuada ciertas estructuras y comportamientos:
 
    - Platos de concina.
    - Cartas del juego UNO (si es que nadie hace trampa).
@@ -132,7 +143,7 @@ Al igual que las listas, las pilas tienen ciertas operaciones fundamentales:
 ## Colas
 
 ### Concepto
-Al igual que la lista, la cola es un conjunto de elementos ordenados. Sin embargo, lo que las diferencia son las **operaciones** que se pueden realizar sobre cada una. Su estructura es conocida como **FIFO** (first in, first out), en el cual como explica el nombre, el primero en entrar es el primero en salir. Al igual que las pilas, restringe las operaciones que nos permiten las listas, pero a la vez permite una manera de utilizarlas que es muy eficaz para resolver otros problemas de la vida contidiana:
+Al igual que la lista, la cola es un conjunto de elementos ordenados. Sin embargo, lo que las diferencia son las **operaciones** que se pueden realizar sobre cada una. Su estructura es conocida como **FIFO** (first in, first out), en el cual como explica el nombre, el primero en entrar es el primero en salir. Al igual que las pilas, restringe las operaciones que nos permiten las listas, pero a la vez facilita una manera de utilizarlas que es muy eficaz para resolver otros problemas de la vida contidiana:
 
    - Colas de colectivo.
    - Cola del supermercado.
@@ -154,7 +165,7 @@ Al igual que las listas, las colas tienen ciertas operaciones fundamentales:
 
 ## Iteradores
 
-Un iterador es un *herramienta* que permite **recorrer** de manera mas eficiente los elementos de una lista. Dependiendo del tipo, tiene más, o menos control sobre el recorrido de los elementos. En vez de tener que recorrer la lista desde el comienzo hasta el elemento actual siendo procesado (lo cual le da un orden de complejidad **O(n)** como peor caso), se accede directamente al elemento siguiente al anterior (cuyo orden de complejidad es **O(1)** para todos los casos).
+Un iterador es un *herramienta* que permite **recorrer** de manera mas eficiente los elementos de una lista de nodos. Dependiendo del tipo, tiene más, o menos control sobre el recorrido de los elementos. En vez de tener que recorrer la lista desde el comienzo hasta el elemento actual siendo procesado (lo cual le da un orden de complejidad **O(n)** como peor caso), se accede directamente al elemento siguiente al anterior (cuyo orden de complejidad es **O(1)** para todos los casos).
 
 ### Iterador interno
 
@@ -182,6 +193,7 @@ por_cada_personaje(lista_personajes, mostrar_personaje)
 ```
 
 De esta manera, nos aseguramos que estamos recorriendo toda la lista de personajes y ejecutando la acción por cada uno de ellos.
+También existen implementaciones como la de este trabajo, en el cual se introduce una variable que sirve de contexto para cada elemento iterado.
 
 ### Iterador externo
 
@@ -213,7 +225,7 @@ mientras_que(iterador_tiene_siguiente(iterador)){
 destruir_iterador(iterador)
 
 ```
-Como se observa, su uso requiere de más líneas de código y es mas propenso a error.
+Como se observa, su uso requiere de más líneas de código y es mas propenso a error, pero puede ser útil para ciertos casos condicionales en iteraciones.
 
 
 Licencia
