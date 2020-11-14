@@ -2,6 +2,8 @@
 #include "pa2mm.h"
 #include "lista.h"
 
+#define ERROR -1
+#define EXITO 0
 
 void probar_creacion_lista(){
     lista_t* lista = lista_crear();
@@ -698,7 +700,7 @@ void probar_iterador_interno(){
     lista_destruir(lista);
 }
 
-void probar_iterador_externo(){
+void    probar_iterador_externo(){
     pa2m_nuevo_grupo("PRUEBAS DE CREACION ITERADOR EXTERNO");
     
     lista_t* lista = lista_crear();
@@ -768,7 +770,7 @@ void probar_iterador_externo(){
     lista_insertar(lista, "elemento_1");
     it = lista_iterador_crear(lista);
     pudo_avanazar = lista_iterador_avanzar(it);
-    pa2m_afirmar(pudo_avanazar == true && it->corriente == NULL, "Se avanza sobre una lista de un elemento");
+    pa2m_afirmar(pudo_avanazar == false && it->corriente == NULL, "Se avanza sobre una lista de un elemento");
     
     lista_destruir(lista);
     lista_iterador_destruir(it);
@@ -816,7 +818,7 @@ void probar_iterador_externo(){
     pudo_avanazar = lista_iterador_avanzar(it);
 
     pa2m_afirmar(
-        pudo_avanazar == true &&
+        pudo_avanazar == false &&
         it->corriente == NULL, "Se termina de iterar toda la lista y queda apuntando al elemento nulo");
         
     lista_iterador_avanzar(it);
