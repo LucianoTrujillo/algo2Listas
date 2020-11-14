@@ -866,6 +866,7 @@ void    probar_iterador_externo(){
     lista_iterador_avanzar(it);
     lista_iterador_avanzar(it);
     lista_iterador_avanzar(it);
+    lista_iterador_avanzar(it);
     pa2m_afirmar(lista_iterador_elemento_actual(it) == NULL, "Elemento actual luego haber tratado de avanzar sobre una lista previamente iterada es nulo");
 
 
@@ -874,11 +875,44 @@ void    probar_iterador_externo(){
 
 }
 
+void pruebas_masivas(){
+    lista_t* lista = lista_crear();
+    const size_t cantidad = 25000;
+
+    int elementos[cantidad];
+
+    for(int i = 0; i < cantidad; i++){
+        elementos[i] = i; 
+        lista_insertar(lista, &(elementos[i]));
+    }
+
+    bool elementos_en_su_lugar = true;
+    for(size_t i = 0; i < cantidad && elementos_en_su_lugar; i++){
+        elementos_en_su_lugar = *(int*)(lista_elemento_en_posicion(lista, i)) == i;
+    }
+
+    pa2m_afirmar(elementos_en_su_lugar, "Se agregan 50k elementos");
+
+    for(int i = 0; i < cantidad; i++){
+        lista_borrar(lista);
+    }
+
+    pa2m_afirmar(
+        lista->cantidad == 0 &&
+        lista->nodo_inicio == NULL &&
+        lista->nodo_fin == NULL,
+         "Se borran 50k elementos");
+
+
+    lista_destruir(lista);
+}
+
 int main() {
     probar_lista();
     probar_pila();
     probar_cola();
     probar_iterador_interno();
     probar_iterador_externo();
+    pruebas_masivas();
     pa2m_mostrar_reporte();
 }
