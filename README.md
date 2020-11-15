@@ -101,23 +101,6 @@ En el caso de las listas doblemente enlazadas, se consta de nodos conformados po
 
 Esta implementación de lista permite una manipulación mas fácil para ciertas operaciones particulares como invertir una lista y es muy útil para cuando se requiere recorrer de manera bidireccional la lista.
 
-### Comparando implementaciones
-A continuación algunos datos para dimensionar la complejidad (del **peor** caso) de las operaciones más comunes entre las diferentes implementaciones de una lista: 
-
-| Operación | Vector Estático | Vector Dinámico | Nodos Simplemente Enlazados |
-| ------ | ------ | ------ | ------ |
-| Crear | *O(1)* | *O(1)* | *O(1)*
-| Destruir | *O(n)* | *O(n)* | *O(n)* |
-| Insertar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
-| Eliminar en lugar *n* | *O(n)* | *O(n)* | *O(n)* |
-| Está vacía | *O(1)* | *O(1)* |*O(1)* |
-| Ver Elemento en lugar *n* | *O(1)* | *O(1)* | *O(n)* |
-
-*Nota 1: Se asume que en todos lo casos se usan en conjunto con una variable de cantidad actual.* <br />
-*Nota 2: Se asume que insertar y destruir quieren mantener la continuidad de los elementos, es decir en el caso de los vectores se quiere una eliminación física, teniendo que mover a todos los elementos de lugar en el peor caso.*  <br />
-*Nota 3: Se asume que las listas empiezan con 0 elementos.*  <br />
-*Nota 4: La complejdiad no es el único factor que determina cual de los tres usar. El vector estático no tiene la posibilidad de agrandarse y se debe reservar de antemano todo el tamaño posible que pueda llegar a ocupar la lista.* 
-
 ## Pilas
 
 ### Concepto
