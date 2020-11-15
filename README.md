@@ -24,7 +24,7 @@ $ ./lista_se
 
 ### Tests de memoria
 
-La ejecución es muy sencilla, solo basta con el siguiente comando para correr todas las pruebas unitarias del TDA.
+El test de memoria con Valgrind se corre de la siguiente manera.
 ```
 $ make mem_test
 ```
